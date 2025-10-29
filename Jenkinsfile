@@ -26,7 +26,7 @@ node {
     } else {
       bat '''
         python -m venv .venv
-        call .venv\Scripts\activate
+        call .venv\\Scripts\\activate
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
       '''
@@ -43,7 +43,7 @@ node {
         '''
       } else {
         bat '''
-          call .venv\Scripts\activate
+          call .venv\\Scripts\\activate
           python train.py
         '''
       }
