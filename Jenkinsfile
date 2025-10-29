@@ -1,5 +1,5 @@
-// Scripted Pipeline (Windows)
-// Not: Declarative yerine scripted kullandık; bu sayede 'stages' DSL hatası yaşamazsınız.
+// Scripted Pipeline (Cross-platform)
+// Not: Declarative yerine scripted; Linux ajanlarda sh, Windows ajanlarda bat kullanır.
 
 properties([
   parameters([
@@ -15,15 +15,28 @@ node {
   }
 
   stage('2. Bağımlılıkları Kur (Install Dependencies)') {
-    bat '''
-      python -m pip install --upgrade pip
-      python -m pip install -r requirements.txt
-    '''
+    if (isUnix()) {
+      sh '''
+        set -e
+        (python3 -m pip --version >/dev/null 2>&1 || python -m ensurepip --upgrade || true)
+        (python3 -m pip install --upgrade pip || python -m pip install --upgrade pip)
+        (python3 -m pip install -r requirements.txt || python -m pip install -r requirements.txt)
+      '''
+    } else {
+      bat '''
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+      '''
+    }
   }
 
   stage('3. Modeli Eğit ve MLflowa Kaydet (Train & Track)') {
     withEnv(["MLFLOW_TRACKING_URI=${params.MLFLOW_TRACKING_URI}"]) {
-      bat 'python train.py'
+      if (isUnix()) {
+        sh '(python3 train.py || python train.py)'
+      } else {
+        bat 'python train.py'
+      }
     }
   }
 }
