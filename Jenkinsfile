@@ -39,12 +39,12 @@ node {
         sh '''
           set -e
           . .venv/bin/activate
-          python train.py
+          python MLflowJenkins/train.py
         '''
       } else {
         bat '''
           call .venv\\Scripts\\activate
-          python train.py
+          python MLflowJenkins\train.py
         '''
       }
     }
