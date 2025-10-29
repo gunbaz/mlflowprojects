@@ -14,16 +14,19 @@ node {
     checkout scm
   }
 
-  stage('2. Bağımlılıkları Kur (Install Dependencies)') {
+  stage('2. Ortamı Hazırla (Prepare Environment)') {
     if (isUnix()) {
       sh '''
         set -e
-        # python3 ve pip sistemde kurulu varsayılır (gerekirse docker exec ile apt-get install python3 python3-pip)
-        (python3 -m pip install --upgrade pip || python -m pip install --upgrade pip)
-        (python3 -m pip install -r requirements.txt || python -m pip install -r requirements.txt)
+        python3 -m venv .venv
+        . .venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
       '''
     } else {
       bat '''
+        python -m venv .venv
+        call .venv\Scripts\activate
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
       '''
@@ -33,9 +36,16 @@ node {
   stage('3. Modeli Eğit ve MLflowa Kaydet (Train & Track)') {
     withEnv(["MLFLOW_TRACKING_URI=${params.MLFLOW_TRACKING_URI}"]) {
       if (isUnix()) {
-        sh '(python3 train.py || python train.py)'
+        sh '''
+          set -e
+          . .venv/bin/activate
+          python train.py
+        '''
       } else {
-        bat 'python train.py'
+        bat '''
+          call .venv\Scripts\activate
+          python train.py
+        '''
       }
     }
   }
