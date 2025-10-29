@@ -7,7 +7,8 @@ properties([
   ])
 ])
 
-node('windows') {
+// Etiket kısıtı kaldırıldı; mevcut herhangi bir executorda çalışır
+node {
   stage('1. Kodu Çek (Checkout)') {
     // Bu job zaten SCM’den tetikleniyorsa checkout scm yeterlidir
     checkout scm
