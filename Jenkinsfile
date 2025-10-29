@@ -3,7 +3,7 @@
 
 properties([
   parameters([
-    string(name: 'MLFLOW_TRACKING_URI', defaultValue: 'http://127.0.0.1:5000', description: 'MLflow Tracking sunucusu URI (örn: http://192.168.1.35:5000)')
+    string(name: 'MLFLOW_TRACKING_URI', defaultValue: 'file:./mlruns', description: 'MLflow Tracking URI. Varsayılan: file:./mlruns (yerel dosya). Uzak sunucu kullanacaksanız örn: http://192.168.1.35:5000')
   ])
 ])
 

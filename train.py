@@ -5,13 +5,31 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import pandas as pd
 import os
+import requests
 
-# 1. MLflow Sunucusunun adresini ayarla
-# ÇOK ÖNEMLİ: Jenkins Docker'da çalıştığı için 'localhost'u görmez.
-# Buraya bilgisayarının ağdaki IP adresini yazmalısın.
-# IP adresini öğrenmek için komut istemine 'ipconfig' yazabilirsin.
-# Örneğin: "http://192.168.1.35:5000" gibi.
-mlflow_tracking_uri = os.environ.get("MLFLOW_TRACKING_URI", "http://192.168.1.35:5000") # IP ADRESİNİ GÜNCELLE
+def _resolve_tracking_uri() -> str:
+    """
+    MLFLOW_TRACKING_URI ortam değişkenini okur.
+    - Boşsa: yerel dosya deposu (file:./mlruns) kullan.
+    - http/https ise: kısa bir health/probe isteğiyle erişilebilirliği test et; erişilemiyorsa file:./mlruns'a düş.
+    - file: veya diğer şemalarda: olduğu gibi kullan.
+    """
+    env_val = os.environ.get("MLFLOW_TRACKING_URI", "").strip()
+    if not env_val:
+        return "file:./mlruns"
+    if env_val.lower().startswith("http"):
+        try:
+            url = env_val.rstrip("/") + "/api/2.0/mlflow/experiments/list"
+            # 2 saniyelik kısa timeout ile dene
+            requests.get(url, timeout=2)
+            return env_val
+        except Exception as e:
+            print(f"Uyarı: MLflow sunucusuna bağlanılamadı ({e}). 'file:./mlruns' ile devam ediliyor.")
+            return "file:./mlruns"
+    return env_val
+
+# 1. MLflow Tracking URI'yi belirle ve ayarla (otomatik fallback ile)
+mlflow_tracking_uri = _resolve_tracking_uri()
 mlflow.set_tracking_uri(mlflow_tracking_uri)
 
 # Deneyin ismini belirle
