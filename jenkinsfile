@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('1. Kodu Çek (Checkout)') {
+            steps {
+                // GitHub reposundan kodu çek
+                git 'https://github.com/gunbaz/mlflowprojects.git'
+            }
+        }
+        stage('2. Bağımlılıkları Kur (Install Dependencies)') {
+            steps {
+                // requirements.txt dosyasındaki kütüphaneleri kur
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('3. Modeli Eğit ve MLflowa Kaydet (Train & Track)') {
+            steps {
+                // Python scriptini çalıştır
+                sh 'python train.py'
+            }
+        }
+    }
+}
