@@ -14,26 +14,28 @@ node {
     checkout scm
   }
 
-  stage('2-3. Python Container içinde Kurulum ve Eğitim') {
-    // Docker yüklü ajanlarda, Python ortamını container ile sağlar
-    // Not: Jenkins’te Docker kullanılabilmesi için Docker kurulmuş olmalı ve docker-workflow eklentisi olmalı.
-    def img = docker.image('python:3.11-slim')
-    // MLflow URI’yi container’a geçiriyoruz
-    img.pull()
-    img.inside("-e MLFLOW_TRACKING_URI=${params.MLFLOW_TRACKING_URI}") {
+  stage('2. Bağımlılıkları Kur (Install Dependencies)') {
+    if (isUnix()) {
+      sh '''
+        set -e
+        # python3 ve pip sistemde kurulu varsayılır (gerekirse docker exec ile apt-get install python3 python3-pip)
+        (python3 -m pip install --upgrade pip || python -m pip install --upgrade pip)
+        (python3 -m pip install -r requirements.txt || python -m pip install -r requirements.txt)
+      '''
+    } else {
+      bat '''
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+      '''
+    }
+  }
+
+  stage('3. Modeli Eğit ve MLflowa Kaydet (Train & Track)') {
+    withEnv(["MLFLOW_TRACKING_URI=${params.MLFLOW_TRACKING_URI}"]) {
       if (isUnix()) {
-        sh '''
-          set -e
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          python train.py
-        '''
+        sh '(python3 train.py || python train.py)'
       } else {
-        bat '''
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          python train.py
-        '''
+        bat 'python train.py'
       }
     }
   }
