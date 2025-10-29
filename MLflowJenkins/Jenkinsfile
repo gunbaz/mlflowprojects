@@ -21,14 +21,14 @@ node {
         python3 -m venv .venv || (python3 -m pip install --break-system-packages virtualenv && python3 -m virtualenv .venv)
         . .venv/bin/activate
         pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r MLflowJenkins/requirements.txt
       '''
     } else {
       bat '''
         python -m venv .venv
         call .venv\\Scripts\\activate
         python -m pip install --upgrade pip
-        python -m pip install -r requirements.txt
+        python -m pip install -r MLflowJenkins\requirements.txt
       '''
     }
   }
