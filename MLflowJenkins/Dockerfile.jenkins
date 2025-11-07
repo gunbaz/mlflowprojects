@@ -1,0 +1,9 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Python3'ü base image'den kopyalayalım (Debian base'de mevcut)
+RUN ln -s /usr/bin/python3 /usr/local/bin/python3 || true && \
+    ln -s /usr/bin/pip3 /usr/local/bin/pip3 || true
+
+USER jenkins

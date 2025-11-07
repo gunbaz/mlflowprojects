@@ -1,0 +1,21 @@
+# Python/venv
+**/.venv/
+**/__pycache__/
+*.pyc
+
+# OS/editor
+.DS_Store
+*.log
+
+# MLflow artifacts
+**/mlruns/
+
+# Jenkins local files
+MLflowJenkins/.jenkins_home/
+MLflowJenkins/jenkins.war
+MLflowJenkins/secrets/
+
+# Archives/binaries (optional)
+*.zip
+*.jar
+*.war

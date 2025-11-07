@@ -14,6 +14,13 @@ node {
     checkout scm
   }
 
+  stage('Show README') {
+    def md = readFile('mlflowprojects/MLflowJenkins/README.md')
+    echo '--- mlflowprojects/MLflowJenkins/README.md ---'
+    echo md
+    currentBuild.description = md.take(500).replaceAll('[\\r\\n]+', ' ')
+  }
+
   stage('2. Ortamı Hazırla (Prepare Environment)') {
     if (isUnix()) {
       sh '''
