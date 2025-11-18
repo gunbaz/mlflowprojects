@@ -8,6 +8,20 @@ pipeline {
             }
         }
         
+        stage('Install Dependencies') {
+            steps {
+                echo 'Bagimliliklar yukleniyor...'
+                bat 'pip install dvc'
+            }
+        }
+        
+        stage('DVC Pull') {
+            steps {
+                echo 'DVC ile veri cekiliyor...'
+                bat 'dvc pull'
+            }
+        }
+        
         stage('Build Docker Image') {
             steps {
                 echo 'Docker image olusturuluyor...'
