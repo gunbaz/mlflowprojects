@@ -11,7 +11,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Bagimliliklar yukleniyor...'
-                bat 'pip install dvc'
+                bat 'pip install -r requirements.txt'
             }
         }
         
@@ -35,14 +35,23 @@ pipeline {
                 bat 'docker run --rm autogluon-iris'
             }
         }
+        
+        stage('MLSecOps Security Audit') {
+            steps {
+                echo 'MLSecOps Guvenlik Denetimi Basliyor...'
+                echo 'OWASP ML Top 10 + MITRE ATLAS'
+                bat 'python mlsecops_security.py'
+            }
+        }
     }
     
     post {
         success {
-            echo 'Pipeline basariyla tamamlandi!'
+            echo '✅ Pipeline basariyla tamamlandi!'
+            echo 'MLSecOps guvenlik denetimi tamamlandi.'
         }
         failure {
-            echo 'Pipeline basarisiz oldu!'
+            echo '❌ Pipeline basarisiz oldu!'
         }
     }
 }

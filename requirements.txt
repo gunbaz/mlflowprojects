@@ -1,4 +1,10 @@
-autogluon==1.4.0
+autogluon.tabular
 pandas
 scikit-learn
-mlflow==3.0.0
+mlflow
+
+# MLSecOps Güvenlik Araçları
+bandit
+safety
+evidently
+adversarial-robustness-toolbox
