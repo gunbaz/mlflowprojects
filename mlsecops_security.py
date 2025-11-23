@@ -416,18 +416,18 @@ def run_mlsecops_pipeline():
         garak_results = run_garak_security_scan()
         mlflow.log_param("garak_status", garak_results["status"])
         mlflow.log_param("atlas_tactic_4", "Prompt Injection")
-        mlflow.log_metric("garak_vulnerabilities", garak_results["vulnerabilities_found"])
-        mlflow.log_metric("prompt_injection_risk", garak_results["prompt_injection_risk"])
-        mlflow.log_metric("toxicity_score", garak_results["toxicity_score"])
-        mlflow.log_metric("jailbreak_attempts", garak_results["jailbreak_attempts"])
+        mlflow.log_metric("Garak_Vulnerabilities_Found", garak_results["vulnerabilities_found"])
+        mlflow.log_metric("Garak_Prompt_Injection_Risk", garak_results["prompt_injection_risk"])
+        mlflow.log_metric("Garak_Toxicity_Score", garak_results["toxicity_score"])
+        mlflow.log_metric("Garak_Jailbreak_Attempts", garak_results["jailbreak_attempts"])
         
         # 5. PyRIT Data Security
         pyrit_results = run_pyrit_data_security()
         mlflow.log_param("pyrit_status", pyrit_results["data_security_status"])
         mlflow.log_param("atlas_tactic_5", "Data Privacy")
-        mlflow.log_metric("pii_detected", pyrit_results["pii_detected"])
-        mlflow.log_metric("sensitive_data_risk", pyrit_results["sensitive_data_risk"])
-        mlflow.log_metric("compliance_score", pyrit_results["compliance_score"])
+        mlflow.log_metric("PyRIT_PII_Detected", pyrit_results["pii_detected"])
+        mlflow.log_metric("PyRIT_Sensitive_Data_Risk", pyrit_results["sensitive_data_risk"])
+        mlflow.log_metric("PyRIT_Compliance_Score_GDPR", pyrit_results["compliance_score"])
         
         # Genel durum
         all_statuses = [
