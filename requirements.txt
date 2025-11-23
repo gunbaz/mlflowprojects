@@ -8,3 +8,10 @@ bandit
 safety
 evidently
 adversarial-robustness-toolbox
+
+# NVIDIA Garak - LLM Güvenlik Tarayıcı
+garak
+
+# PyRIT - Veri Güvenliği
+presidio-analyzer
+presidio-anonymizer

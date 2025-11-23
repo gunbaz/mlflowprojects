@@ -1,6 +1,46 @@
-venv/
-autogluon_models/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# AutoGluon
+autogluon_models/
+
+# MLflow
 mlruns/
+
+# DVC
+.dvc/cache
+
+# Jupyter
 .ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Data (büyük dosyalar)
+*.csv
+!data/iris.csv
+
+# Temporary files
+*.tmp
+*.bak

@@ -1,4 +1,6 @@
 [core]
-    remote = myremote
+    remote = dagshub
 ['remote "myremote"']
     url = C:/dvc-storage
+['remote "dagshub"']
+    url = https://dagshub.com/MAliTopkara/autogluon-iris.dvc
