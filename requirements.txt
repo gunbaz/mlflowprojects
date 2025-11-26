@@ -15,3 +15,7 @@ garak
 # PyRIT - Veri Güvenliği
 presidio-analyzer
 presidio-anonymizer
+
+# LLM Security Testing
+transformers
+torch

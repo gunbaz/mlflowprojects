@@ -36,27 +36,20 @@ pipeline {
             }
         }
         
-        stage('MLSecOps Security Audit') {
+        stage('MLSecOps Security Audit - Iris') {
             steps {
-                echo 'MLSecOps Guvenlik Denetimi Basliyor...'
-                echo 'OWASP ML Top 10 + MITRE ATLAS + Garak + PyRIT'
+                echo '📊 MLSecOps Guvenlik Denetimi (Iris Dataset)'
+                echo 'OWASP ML Top 10 + MITRE ATLAS'
                 bat 'python mlsecops_security.py'
             }
         }
         
-        stage('NVIDIA Garak LLM Security') {
+        stage('LLM Security Testing - Garak + PyRIT') {
             steps {
-                echo '🛡️ NVIDIA Garak - LLM Guvenlik Taramasi'
-                echo 'Prompt Injection, Jailbreak, Toxicity Testleri'
-                bat 'python -c "from mlsecops_security import run_garak_security_scan; run_garak_security_scan()"'
-            }
-        }
-        
-        stage('PyRIT Data Security') {
-            steps {
-                echo '🔒 PyRIT - Veri Guvenliği ve Gizlilik Testi'
-                echo 'PII Detection, Compliance Kontrolu'
-                bat 'python -c "from mlsecops_security import run_pyrit_data_security; run_pyrit_data_security()"'
+                echo '🤖 LLM Guvenlik Testleri (GPT-2)'
+                echo '🛡️ Garak: Prompt Injection, Jailbreak, Toxicity'
+                echo '🔒 PyRIT: PII Detection, Data Privacy, GDPR Compliance'
+                bat 'python llm_security/llm_security_test.py'
             }
         }
     }
@@ -64,9 +57,13 @@ pipeline {
     post {
         success {
             echo '✅ Pipeline basariyla tamamlandi!'
-            echo 'MLSecOps guvenlik denetimi tamamlandi.'
-            echo '🛡️ Garak LLM Security: PASSED'
-            echo '🔒 PyRIT Data Security: PASSED'
+            echo '📊 Iris MLSecOps Security: PASSED'
+            echo '🤖 LLM Security (Garak + PyRIT): PASSED'
+            echo ''
+            echo 'MLflow Experiments:'
+            echo '  1. MLSecOps-Security-Audit (Iris)'
+            echo '  2. LLM-Security-Garak-PyRIT (GPT-2)'
+            echo ''
             echo 'MLflow UI: http://127.0.0.1:5000'
         }
         failure {
