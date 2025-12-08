@@ -36,11 +36,16 @@ pipeline {
             }
         }
         
-        stage('MLSecOps Security Audit - Iris') {
+        stage('MLSecOps Security Audit - Full Pipeline') {
             steps {
-                echo '📊 MLSecOps Guvenlik Denetimi (Iris Dataset)'
-                echo 'OWASP ML Top 10 + MITRE ATLAS'
+                echo '🔒 MLSecOps v3.0 - Tam Güvenlik Pipeline'
+                echo '📊 9 Test: OWASP + ATLAS + Garak + PyRIT + Fairlearn + Giskard + Credo AI + CycloneDX'
                 bat 'python mlsecops_security.py'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'fairness_report.html, giskard_report.html, credo_model_card.md, sbom.json, vulnerability_report.json', allowEmptyArchive: true
+                }
             }
         }
         
@@ -52,17 +57,81 @@ pipeline {
                 bat 'python llm_security/llm_security_test.py'
             }
         }
+        
+        stage('Stage 6 - Fairness Testing (Fairlearn)') {
+            steps {
+                echo '⚖️ Test 6: Microsoft Fairlearn - Fairness & Bias Analysis'
+                echo 'Demographic Parity, Group Accuracy, Bias Detection'
+                bat 'python -c "from mlsecops_security import test_6_fairness_bias; test_6_fairness_bias()"'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'fairness_report.html', allowEmptyArchive: true
+                }
+            }
+        }
+        
+        stage('Stage 7 - Giskard Validation') {
+            steps {
+                echo '🔬 Test 7: Giskard - Comprehensive ML Model Testing'
+                echo 'Accuracy, F1, Precision, Robustness, Metamorphic Tests'
+                bat 'python -c "from mlsecops_security import test_7_giskard_validation; test_7_giskard_validation()"'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'giskard_report.html', allowEmptyArchive: true
+                }
+            }
+        }
+        
+        stage('Stage 8 - Credo AI Governance') {
+            steps {
+                echo '📋 Test 8: Credo AI - AI Governance & Compliance'
+                echo 'EU AI Act, GDPR, Risk Assessment, Model Card Generation'
+                bat 'python -c "from mlsecops_security import test_8_credo_governance; test_8_credo_governance()"'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'credo_model_card.md', allowEmptyArchive: true
+                }
+            }
+        }
+        
+        stage('Stage 9 - SBOM & Vulnerability Scan') {
+            steps {
+                echo '📦 Test 9: CycloneDX - SBOM Generation & CVE Scanning'
+                echo 'Software Bill of Materials, Vulnerability Detection, CVSS Scoring'
+                bat 'python -c "from mlsecops_security import test_9_sbom_generation; test_9_sbom_generation()"'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'sbom.json, vulnerability_report.json', allowEmptyArchive: true
+                }
+            }
+        }
     }
     
     post {
         success {
             echo '✅ Pipeline basariyla tamamlandi!'
-            echo '📊 Iris MLSecOps Security: PASSED'
-            echo '🤖 LLM Security (Garak + PyRIT): PASSED'
             echo ''
-            echo 'MLflow Experiments:'
-            echo '  1. MLSecOps-Security-Audit (Iris)'
-            echo '  2. LLM-Security-Garak-PyRIT (GPT-2)'
+            echo '📊 MLSecOps v3.0 - 9 Güvenlik Testi:'
+            echo '  1. OWASP ML06 - Supply Chain Security'
+            echo '  2. OWASP ML08 - Model Drift Detection'
+            echo '  3. OWASP ML01 - Adversarial Robustness'
+            echo '  4. NVIDIA Garak - LLM Security'
+            echo '  5. PyRIT - Data Privacy'
+            echo '  6. Fairlearn - Fairness & Bias'
+            echo '  7. Giskard - ML Validation'
+            echo '  8. Credo AI - Governance'
+            echo '  9. CycloneDX - SBOM & CVE'
+            echo ''
+            echo '📁 Generated Artifacts:'
+            echo '  - fairness_report.html'
+            echo '  - giskard_report.html'
+            echo '  - credo_model_card.md'
+            echo '  - sbom.json'
+            echo '  - vulnerability_report.json'
             echo ''
             echo 'MLflow UI: http://127.0.0.1:5000'
         }

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fairlearn Fairness Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        .metric { padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .good { background: #d4edda; border-left: 5px solid #28a745; }
+        .warning { background: #fff3cd; border-left: 5px solid #ffc107; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .metric-label { color: #666; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #3498db; color: white; }
+        .timestamp { color: #888; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚖️ Fairlearn Fairness Report</h1>
+        <p>Microsoft Fairlearn ile model adalet ve önyargı analizi</p>
+        
+        <div class="metric good">
+            <div class="metric-label">Fairness Score</div>
+            <div class="metric-value">0.9941</div>
+        </div>
+        
+        <div class="metric good">
+            <div class="metric-label">Demographic Parity Difference</div>
+            <div class="metric-value">0.0059</div>
+        </div>
+        
+        <h2>Grup Bazlı Metrikler</h2>
+        <table>
+            <tr><th>Grup</th><th>Accuracy</th><th>Status</th></tr>
+            <tr><td>Group A</td><td>1.0000</td><td>✅</td></tr>
+            <tr><td>Group B</td><td>1.0000</td><td>✅</td></tr>
+        </table>
+        
+        <h2>Değerlendirme Kriterleri</h2>
+        <ul>
+            <li>DPD -0.2 ile 0.2 arası: <b>İdeal</b></li>
+            <li>Fairness Score 0.8+: <b>Adil Model</b></li>
+            <li>Grup accuracy farkı %5'ten az: <b>Kabul Edilebilir</b></li>
+        </ul>
+        
+        <p class="timestamp">Rapor Tarihi: 2025-12-08 10:23:02</p>
+    </div>
+</body>
+</html>

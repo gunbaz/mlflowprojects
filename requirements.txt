@@ -19,3 +19,13 @@ presidio-anonymizer
 # LLM Security Testing
 transformers
 torch
+
+# Fairness Testing (Microsoft Fairlearn)
+fairlearn>=0.10.0
+
+# Giskard ML Validation
+giskard>=2.5.0
+
+# SBOM Generation (CycloneDX)
+cyclonedx-bom>=4.0.0
+cyclonedx-python-lib>=5.0.0
