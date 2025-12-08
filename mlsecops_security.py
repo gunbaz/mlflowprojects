@@ -439,10 +439,10 @@ def test_6_fairness_bias():
             results["demographic_parity_diff"] = round(abs(dpd), 4)
             results["fairness_score"] = round(1.0 - abs(dpd), 4)
             
-            print(f"✅ Demographic Parity Difference: {dpd:.4f}")
-            print(f"✅ Fairness Score: {results['fairness_score']:.4f}")
-            print(f"✅ Group A Accuracy: {group_a_acc:.4f}")
-            print(f"✅ Group B Accuracy: {group_b_acc:.4f}")
+            print(f"[OK] Demographic Parity Difference: {dpd:.4f}")
+            print(f"[OK] Fairness Score: {results['fairness_score']:.4f}")
+            print(f"[OK] Group A Accuracy: {group_a_acc:.4f}")
+            print(f"[OK] Group B Accuracy: {group_b_acc:.4f}")
             
         except ImportError:
             # Fairlearn yüklü değilse simülasyon
@@ -462,10 +462,10 @@ def test_6_fairness_bias():
             results["demographic_parity_diff"] = round(dpd, 4)
             results["fairness_score"] = round(1.0 - dpd, 4)
             
-            print(f"✅ Demographic Parity Difference: {dpd:.4f}")
-            print(f"✅ Fairness Score: {results['fairness_score']:.4f}")
-            print(f"✅ Group A Accuracy: {group_a_acc:.4f}")
-            print(f"✅ Group B Accuracy: {group_b_acc:.4f}")
+            print(f"[OK] Demographic Parity Difference: {dpd:.4f}")
+            print(f"[OK] Fairness Score: {results['fairness_score']:.4f}")
+            print(f"[OK] Group A Accuracy: {group_a_acc:.4f}")
+            print(f"[OK] Group B Accuracy: {group_b_acc:.4f}")
         
         # HTML Rapor oluştur
         html_report = f"""
@@ -490,7 +490,7 @@ def test_6_fairness_bias():
 </head>
 <body>
     <div class="container">
-        <h1>⚖️ Fairlearn Fairness Report</h1>
+        <h1>[ADALET] Fairlearn Fairness Report</h1>
         <p>Microsoft Fairlearn ile model adalet ve önyargı analizi</p>
         
         <div class="metric {'good' if results['fairness_score'] >= 0.8 else 'warning'}">
@@ -506,8 +506,8 @@ def test_6_fairness_bias():
         <h2>Grup Bazlı Metrikler</h2>
         <table>
             <tr><th>Grup</th><th>Accuracy</th><th>Status</th></tr>
-            <tr><td>Group A</td><td>{results['group_a_accuracy']:.4f}</td><td>{'✅' if results['group_a_accuracy'] > 0.85 else '⚠️'}</td></tr>
-            <tr><td>Group B</td><td>{results['group_b_accuracy']:.4f}</td><td>{'✅' if results['group_b_accuracy'] > 0.85 else '⚠️'}</td></tr>
+            <tr><td>Group A</td><td>{results['group_a_accuracy']:.4f}</td><td>{'[OK]' if results['group_a_accuracy'] > 0.85 else '[UYARI]'}</td></tr>
+            <tr><td>Group B</td><td>{results['group_b_accuracy']:.4f}</td><td>{'[OK]' if results['group_b_accuracy'] > 0.85 else '[UYARI]'}</td></tr>
         </table>
         
         <h2>Değerlendirme Kriterleri</h2>
@@ -524,7 +524,7 @@ def test_6_fairness_bias():
 """
         with open("fairness_report.html", "w", encoding="utf-8") as f:
             f.write(html_report)
-        print("📊 Report saved: fairness_report.html")
+        print("[RAPOR] Report saved: fairness_report.html")
         
         # Durum değerlendirmesi
         if results["fairness_score"] >= 0.8 and abs(results["demographic_parity_diff"]) <= 0.2:
@@ -590,21 +590,21 @@ def test_7_giskard_validation():
         acc_passed = accuracy > 0.90
         results["accuracy_test"] = acc_passed
         test_results.append(("Accuracy Test (>0.90)", accuracy, acc_passed))
-        print(f"{'✅' if acc_passed else '❌'} Accuracy: {accuracy:.4f} (threshold: 0.90)")
+        print(f"{'[OK]' if acc_passed else '[FAIL]'} Accuracy: {accuracy:.4f} (threshold: 0.90)")
         
         # Test 2: F1 Score Test (threshold > 0.85)
         f1 = f1_score(y_test, y_pred, average='weighted')
         f1_passed = f1 > 0.85
         results["f1_test"] = f1_passed
         test_results.append(("F1 Score Test (>0.85)", f1, f1_passed))
-        print(f"{'✅' if f1_passed else '❌'} F1 Score: {f1:.4f} (threshold: 0.85)")
+        print(f"{'[OK]' if f1_passed else '[FAIL]'} F1 Score: {f1:.4f} (threshold: 0.85)")
         
         # Test 3: Precision Test (threshold > 0.85)
         precision = precision_score(y_test, y_pred, average='weighted')
         prec_passed = precision > 0.85
         results["precision_test"] = prec_passed
         test_results.append(("Precision Test (>0.85)", precision, prec_passed))
-        print(f"{'✅' if prec_passed else '❌'} Precision: {precision:.4f} (threshold: 0.85)")
+        print(f"{'[OK]' if prec_passed else '[FAIL]'} Precision: {precision:.4f} (threshold: 0.85)")
         
         # Test 4: Robustness Test (noisy input)
         print("\n[INFO] Robustness Test - Noisy Input Handling...")
@@ -622,7 +622,7 @@ def test_7_giskard_validation():
         robust_passed = avg_robustness > 0.80
         results["robustness_test"] = robust_passed
         test_results.append(("Robustness Test (>0.80)", avg_robustness, robust_passed))
-        print(f"{'✅' if robust_passed else '❌'} Average Robustness: {avg_robustness:.4f}")
+        print(f"{'[OK]' if robust_passed else '[FAIL]'} Average Robustness: {avg_robustness:.4f}")
         
         # Test 5: Metamorphic Testing
         print("\n[INFO] Metamorphic Testing - Input Perturbations...")
@@ -630,7 +630,7 @@ def test_7_giskard_validation():
         y_pred_scaled = model.predict(X_test_scaled)
         metamorphic_passed = np.array_equal(y_pred, y_pred_scaled)
         test_results.append(("Metamorphic Test", 1.0 if metamorphic_passed else 0.0, metamorphic_passed))
-        print(f"{'✅' if metamorphic_passed else '❌'} Metamorphic Test: {'PASSED' if metamorphic_passed else 'FAILED'}")
+        print(f"{'[OK]' if metamorphic_passed else '[FAIL]'} Metamorphic Test: {'PASSED' if metamorphic_passed else 'FAILED'}")
         
         # Sonuçları hesapla
         passed = sum(1 for _, _, p in test_results if p)
@@ -640,8 +640,8 @@ def test_7_giskard_validation():
         results["giskard_tests_failed"] = failed
         results["giskard_pass_rate"] = round(passed / len(test_results), 4)
         
-        print(f"\n📊 Test Summary: {passed}/{len(test_results)} tests passed")
-        print(f"📊 Pass Rate: {results['giskard_pass_rate']:.2%}")
+        print(f"\n[RAPOR] Test Summary: {passed}/{len(test_results)} tests passed")
+        print(f"[RAPOR] Pass Rate: {results['giskard_pass_rate']:.2%}")
         
         # HTML Rapor oluştur
         html_report = f"""
@@ -665,14 +665,14 @@ def test_7_giskard_validation():
 </head>
 <body>
     <div class="container">
-        <h1>🔬 Giskard ML Validation Report</h1>
+        <h1>[TEST] Giskard ML Validation Report</h1>
         <p>Comprehensive ML Model Testing Results</p>
         
         <div class="test-grid">
 """
         for test_name, value, passed in test_results:
             status_class = "passed" if passed else "failed"
-            icon = "✅" if passed else "❌"
+            icon = "[OK]" if passed else "[FAIL]"
             html_report += f"""
             <div class="test-card {status_class}">
                 <div class="test-name">{icon} {test_name}</div>
@@ -698,7 +698,7 @@ def test_7_giskard_validation():
 """
         with open("giskard_report.html", "w", encoding="utf-8") as f:
             f.write(html_report)
-        print("📊 Report saved: giskard_report.html")
+        print("[RAPOR] Report saved: giskard_report.html")
         
         # Durum değerlendirmesi
         if results["giskard_pass_rate"] >= 0.8:
@@ -760,26 +760,26 @@ def test_8_credo_governance():
         fairness_risk = np.random.uniform(1.0, 3.5)
         results["fairness_risk"] = round(fairness_risk, 2)
         risk_level = "Düşük" if fairness_risk < 3 else "Orta" if fairness_risk < 6 else "Yüksek"
-        print(f"✅ Fairness Risk: {fairness_risk:.2f}/10 ({risk_level})")
+        print(f"[OK] Fairness Risk: {fairness_risk:.2f}/10 ({risk_level})")
         
         print("\n[2/4] Privacy Risk Assessment...")
         privacy_risk = np.random.uniform(0.5, 2.5)  # Iris data has no PII
         results["privacy_risk"] = round(privacy_risk, 2)
         risk_level = "Düşük" if privacy_risk < 3 else "Orta" if privacy_risk < 6 else "Yüksek"
-        print(f"✅ Privacy Risk: {privacy_risk:.2f}/10 ({risk_level})")
+        print(f"[OK] Privacy Risk: {privacy_risk:.2f}/10 ({risk_level})")
         
         print("\n[3/4] Transparency Risk Assessment...")
         # Random Forest şeffaflık skoru (feature importance var = daha şeffaf)
         transparency_risk = 2.5  # RF is moderately interpretable
         results["transparency_risk"] = round(transparency_risk, 2)
         risk_level = "Düşük" if transparency_risk < 3 else "Orta" if transparency_risk < 6 else "Yüksek"
-        print(f"✅ Transparency Risk: {transparency_risk:.2f}/10 ({risk_level})")
+        print(f"[OK] Transparency Risk: {transparency_risk:.2f}/10 ({risk_level})")
         
         print("\n[4/4] Performance Risk Assessment...")
         performance_risk = max(0, (1 - accuracy) * 10)  # Düşük accuracy = yüksek risk
         results["performance_risk"] = round(performance_risk, 2)
         risk_level = "Düşük" if performance_risk < 3 else "Orta" if performance_risk < 6 else "Yüksek"
-        print(f"✅ Performance Risk: {performance_risk:.2f}/10 ({risk_level})")
+        print(f"[OK] Performance Risk: {performance_risk:.2f}/10 ({risk_level})")
         
         # Genel risk skoru
         overall_risk = np.mean([
@@ -791,23 +791,23 @@ def test_8_credo_governance():
         results["overall_risk"] = round(overall_risk, 2)
         
         overall_level = "Düşük" if overall_risk < 3 else "Orta" if overall_risk < 6 else "Yüksek"
-        print(f"\n📊 Overall Risk Score: {overall_risk:.2f}/10 ({overall_level})")
+        print(f"\n[RAPOR] Overall Risk Score: {overall_risk:.2f}/10 ({overall_level})")
         
         # Compliance durumu
         if overall_risk < 3:
             results["compliance_status"] = "COMPLIANT"
-            compliance_icon = "🟢"
+            compliance_icon = "[YESIL]"
         elif overall_risk < 6:
             results["compliance_status"] = "REVIEW_NEEDED"
-            compliance_icon = "🟡"
+            compliance_icon = "[SARI]"
         else:
             results["compliance_status"] = "NON_COMPLIANT"
-            compliance_icon = "🔴"
+            compliance_icon = "[KIRMIZI]"
         
         print(f"{compliance_icon} EU AI Act Compliance: {results['compliance_status']}")
         
         # Model Card oluştur (Markdown)
-        model_card = f"""# 📋 Model Card - Iris Classification Model
+        model_card = f"""# [MODEL] Model Card - Iris Classification Model
 
 ## Model Description
 
@@ -853,11 +853,11 @@ def test_8_credo_governance():
 
 | Risk Category | Score | Level |
 |--------------|-------|-------|
-| **Fairness** | {results['fairness_risk']:.2f}/10 | {'🟢 Düşük' if results['fairness_risk'] < 3 else '🟡 Orta' if results['fairness_risk'] < 6 else '🔴 Yüksek'} |
-| **Privacy** | {results['privacy_risk']:.2f}/10 | {'🟢 Düşük' if results['privacy_risk'] < 3 else '🟡 Orta' if results['privacy_risk'] < 6 else '🔴 Yüksek'} |
-| **Transparency** | {results['transparency_risk']:.2f}/10 | {'🟢 Düşük' if results['transparency_risk'] < 3 else '🟡 Orta' if results['transparency_risk'] < 6 else '🔴 Yüksek'} |
-| **Performance** | {results['performance_risk']:.2f}/10 | {'🟢 Düşük' if results['performance_risk'] < 3 else '🟡 Orta' if results['performance_risk'] < 6 else '🔴 Yüksek'} |
-| **Overall** | {results['overall_risk']:.2f}/10 | {'🟢 Düşük' if results['overall_risk'] < 3 else '🟡 Orta' if results['overall_risk'] < 6 else '🔴 Yüksek'} |
+| **Fairness** | {results['fairness_risk']:.2f}/10 | {'[YESIL] Dusuk' if results['fairness_risk'] < 3 else '[SARI] Orta' if results['fairness_risk'] < 6 else '[KIRMIZI] Yuksek'} |
+| **Privacy** | {results['privacy_risk']:.2f}/10 | {'[YESIL] Dusuk' if results['privacy_risk'] < 3 else '[SARI] Orta' if results['privacy_risk'] < 6 else '[KIRMIZI] Yuksek'} |
+| **Transparency** | {results['transparency_risk']:.2f}/10 | {'[YESIL] Dusuk' if results['transparency_risk'] < 3 else '[SARI] Orta' if results['transparency_risk'] < 6 else '[KIRMIZI] Yuksek'} |
+| **Performance** | {results['performance_risk']:.2f}/10 | {'[YESIL] Dusuk' if results['performance_risk'] < 3 else '[SARI] Orta' if results['performance_risk'] < 6 else '[KIRMIZI] Yuksek'} |
+| **Overall** | {results['overall_risk']:.2f}/10 | {'[YESIL] Dusuk' if results['overall_risk'] < 3 else '[SARI] Orta' if results['overall_risk'] < 6 else '[KIRMIZI] Yuksek'} |
 
 ## Ethical Considerations
 
@@ -881,8 +881,8 @@ def test_8_credo_governance():
 | Regulation | Status |
 |------------|--------|
 | **EU AI Act** | {compliance_icon} {results['compliance_status']} |
-| **GDPR** | 🟢 Compliant |
-| **ISO/IEC 42001** | 🟢 Aligned |
+| **GDPR** | [YESIL] Compliant |
+| **ISO/IEC 42001** | [YESIL] Aligned |
 
 ---
 
@@ -892,7 +892,7 @@ def test_8_credo_governance():
         
         with open("credo_model_card.md", "w", encoding="utf-8") as f:
             f.write(model_card)
-        print("📊 Model Card saved: credo_model_card.md")
+        print("[RAPOR] Model Card saved: credo_model_card.md")
         
         # Durum değerlendirmesi
         if overall_risk < 3:
@@ -951,7 +951,7 @@ def test_9_sbom_generation():
             })
         
         results["sbom_components"] = len(installed_packages)
-        print(f"✅ Found {len(installed_packages)} installed packages")
+        print(f"[OK] Found {len(installed_packages)} installed packages")
         
         # SBOM JSON oluştur (CycloneDX formatı)
         sbom = {
@@ -1003,7 +1003,7 @@ def test_9_sbom_generation():
         # SBOM kaydet
         with open("sbom.json", "w", encoding="utf-8") as f:
             json.dump(sbom, f, indent=2, ensure_ascii=False)
-        print("📊 SBOM saved: sbom.json")
+        print("[RAPOR] SBOM saved: sbom.json")
         
         print("\n[2/3] Running Vulnerability Scan (Simulation)...")
         
@@ -1043,11 +1043,11 @@ def test_9_sbom_generation():
         
         results["sbom_vulnerabilities"] = len(vulnerabilities)
         
-        print(f"✅ Scan complete! Found {len(vulnerabilities)} vulnerabilities")
-        print(f"   🔴 Critical: {results['critical_vulns']}")
-        print(f"   🟠 High: {results['high_vulns']}")
-        print(f"   🟡 Medium: {results['medium_vulns']}")
-        print(f"   🟢 Low: {results['low_vulns']}")
+        print(f"[OK] Scan complete! Found {len(vulnerabilities)} vulnerabilities")
+        print(f"   [KIRMIZI] Critical: {results['critical_vulns']}")
+        print(f"   [TURUNCU] High: {results['high_vulns']}")
+        print(f"   [SARI] Medium: {results['medium_vulns']}")
+        print(f"   [YESIL] Low: {results['low_vulns']}")
         
         print("\n[3/3] Generating Vulnerability Report...")
         
@@ -1069,7 +1069,7 @@ def test_9_sbom_generation():
         
         with open("vulnerability_report.json", "w", encoding="utf-8") as f:
             json.dump(vuln_report, f, indent=2, ensure_ascii=False)
-        print("📊 Report saved: vulnerability_report.json")
+        print("[RAPOR] Report saved: vulnerability_report.json")
         
         # Durum değerlendirmesi
         if results["critical_vulns"] > 0:
@@ -1300,7 +1300,7 @@ def run_mlsecops_pipeline():
         print("\n" + "="*70)
         print("                    MLSecOps ÖZET RAPORU v3.0")
         print("="*70)
-        print("\n📊 TEST SONUÇLARI:\n")
+        print("\n[RAPOR] TEST SONUCLARI:\n")
         print(f"  1. OWASP ML06 (Tedarik Zinciri)     : {security_results['status']}")
         print(f"  2. OWASP ML08 (Model Drift)         : {drift_results['status']}")
         print(f"  3. OWASP ML01 (Adversarial Test)    : {adversarial_results['status']}")
@@ -1312,14 +1312,14 @@ def run_mlsecops_pipeline():
         print(f"  9. CycloneDX (SBOM/CVE)             : {sbom_results.get('status', 'SKIPPED')}")
         
         print("\n" + "-"*70)
-        print(f"  ✅ PASSED: {passed_count}  |  ⚠️ WARNING: {warning_count}  |  ❌ ERROR: {error_count}  |  ⏭️ SKIPPED: {skipped_count}")
+        print(f"  [OK] PASSED: {passed_count}  |  [UYARI] WARNING: {warning_count}  |  [FAIL] ERROR: {error_count}  |  [SKIP] SKIPPED: {skipped_count}")
         print("-"*70)
         
-        print(f"\n🔒 GENEL GÜVENLİK DURUMU: {overall}")
+        print(f"\n[GUVENLIK] GENEL GUVENLIK DURUMU: {overall}")
         print("="*70)
         
         # Artifact listesi
-        print("\n📁 OLUŞTURULAN RAPORLAR:")
+        print("\n[DOSYA] OLUSTURULAN RAPORLAR:")
         artifacts = [
             ("fairness_report.html", "Fairlearn Fairness Report"),
             ("giskard_report.html", "Giskard ML Validation Report"),
@@ -1329,18 +1329,18 @@ def run_mlsecops_pipeline():
         ]
         for filename, desc in artifacts:
             if os.path.exists(filename):
-                print(f"  ✅ {filename} - {desc}")
+                print(f"  [OK] {filename} - {desc}")
             else:
-                print(f"  ⏭️ {filename} - (not generated)")
+                print(f"  [SKIP] {filename} - (not generated)")
         
         print("\n" + "="*70)
         
         if overall == "PASSED":
-            print("✅ Tüm güvenlik testleri başarılı!")
+            print("[OK] Tum guvenlik testleri basarili!")
         elif overall == "WARNING":
-            print("⚠️ Bazı uyarılar var, MLflow'da detayları inceleyebilirsiniz")
+            print("[UYARI] Bazi uyarilar var, MLflow'da detaylari inceleyebilirsiniz")
         else:
-            print("❌ Kritik güvenlik sorunları tespit edildi!")
+            print("[FAIL] Kritik guvenlik sorunlari tespit edildi!")
         
         return overall
 
