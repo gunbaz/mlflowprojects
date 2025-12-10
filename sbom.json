@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:20251208102303",
+  "serialNumber": "urn:uuid:20251210161125",
   "version": 1,
   "metadata": {
-    "timestamp": "2025-12-08T10:23:03.066965",
+    "timestamp": "2025-12-10T16:11:25.024885",
     "tools": [
       {
         "vendor": "MLSecOps",
@@ -21,86 +21,16 @@
   "components": [
     {
       "type": "library",
-      "name": "Flask-MySQLdb",
-      "version": "2.0.0",
-      "purl": "pkg:pypi/Flask-MySQLdb@2.0.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "PySocks",
-      "version": "1.7.1",
-      "purl": "pkg:pypi/PySocks@1.7.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "absl-py",
-      "version": "2.3.1",
-      "purl": "pkg:pypi/absl-py@2.3.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "accelerate",
-      "version": "1.10.1",
-      "purl": "pkg:pypi/accelerate@1.10.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "adagio",
-      "version": "0.2.6",
-      "purl": "pkg:pypi/adagio@0.2.6",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "adversarial-robustness-toolbox",
-      "version": "1.20.1",
-      "purl": "pkg:pypi/adversarial-robustness-toolbox@1.20.1",
-      "scope": "required"
-    },
-    {
-      "type": "library",
-      "name": "aiohappyeyeballs",
-      "version": "2.6.1",
-      "purl": "pkg:pypi/aiohappyeyeballs@2.6.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "aiohttp",
-      "version": "3.13.2",
-      "purl": "pkg:pypi/aiohttp@3.13.2",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "aiohttp-cors",
-      "version": "0.8.1",
-      "purl": "pkg:pypi/aiohttp-cors@0.8.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "aiosignal",
-      "version": "1.4.0",
-      "purl": "pkg:pypi/aiosignal@1.4.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
       "name": "alembic",
-      "version": "1.15.2",
-      "purl": "pkg:pypi/alembic@1.15.2",
+      "version": "1.17.2",
+      "purl": "pkg:pypi/alembic@1.17.2",
       "scope": "optional"
     },
     {
       "type": "library",
-      "name": "altair",
-      "version": "5.5.0",
-      "purl": "pkg:pypi/altair@5.5.0",
+      "name": "annotated-doc",
+      "version": "0.0.4",
+      "purl": "pkg:pypi/annotated-doc@0.0.4",
       "scope": "optional"
     },
     {
@@ -112,30 +42,23 @@
     },
     {
       "type": "library",
-      "name": "antlr4-python3-runtime",
-      "version": "4.9.3",
-      "purl": "pkg:pypi/antlr4-python3-runtime@4.9.3",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
       "name": "anyio",
-      "version": "4.11.0",
-      "purl": "pkg:pypi/anyio@4.11.0",
+      "version": "4.12.0",
+      "purl": "pkg:pypi/anyio@4.12.0",
       "scope": "optional"
     },
     {
       "type": "library",
-      "name": "appdirs",
-      "version": "1.4.4",
-      "purl": "pkg:pypi/appdirs@1.4.4",
+      "name": "asgiref",
+      "version": "3.11.0",
+      "purl": "pkg:pypi/asgiref@3.11.0",
       "scope": "optional"
     },
     {
       "type": "library",
-      "name": "attrs",
-      "version": "25.3.0",
-      "purl": "pkg:pypi/attrs@25.3.0",
+      "name": "asttokens",
+      "version": "3.0.1",
+      "purl": "pkg:pypi/asttokens@3.0.1",
       "scope": "optional"
     },
     {
@@ -143,13 +66,6 @@
       "name": "authlib",
       "version": "1.6.5",
       "purl": "pkg:pypi/authlib@1.6.5",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "autogluon",
-      "version": "1.4.0",
-      "purl": "pkg:pypi/autogluon@1.4.0",
       "scope": "optional"
     },
     {
@@ -175,13 +91,6 @@
     },
     {
       "type": "library",
-      "name": "autogluon.multimodal",
-      "version": "1.4.0",
-      "purl": "pkg:pypi/autogluon.multimodal@1.4.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
       "name": "autogluon.tabular",
       "version": "1.4.0",
       "purl": "pkg:pypi/autogluon.tabular@1.4.0",
@@ -189,38 +98,10 @@
     },
     {
       "type": "library",
-      "name": "autogluon.timeseries",
-      "version": "1.4.0",
-      "purl": "pkg:pypi/autogluon.timeseries@1.4.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
       "name": "bandit",
-      "version": "1.9.1",
-      "purl": "pkg:pypi/bandit@1.9.1",
+      "version": "1.9.2",
+      "purl": "pkg:pypi/bandit@1.9.2",
       "scope": "required"
-    },
-    {
-      "type": "library",
-      "name": "bcrypt",
-      "version": "4.0.1",
-      "purl": "pkg:pypi/bcrypt@4.0.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "beartype",
-      "version": "0.22.4",
-      "purl": "pkg:pypi/beartype@0.22.4",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "beautifulsoup4",
-      "version": "4.14.2",
-      "purl": "pkg:pypi/beautifulsoup4@4.14.2",
-      "scope": "optional"
     },
     {
       "type": "library",
@@ -231,65 +112,30 @@
     },
     {
       "type": "library",
-      "name": "blis",
-      "version": "1.3.0",
-      "purl": "pkg:pypi/blis@1.3.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
       "name": "boto3",
-      "version": "1.40.62",
-      "purl": "pkg:pypi/boto3@1.40.62",
+      "version": "1.42.6",
+      "purl": "pkg:pypi/boto3@1.42.6",
       "scope": "optional"
     },
     {
       "type": "library",
       "name": "botocore",
-      "version": "1.40.62",
-      "purl": "pkg:pypi/botocore@1.40.62",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "build",
-      "version": "1.3.0",
-      "purl": "pkg:pypi/build@1.3.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "cachecontrol",
-      "version": "0.14.3",
-      "purl": "pkg:pypi/cachecontrol@0.14.3",
+      "version": "1.42.6",
+      "purl": "pkg:pypi/botocore@1.42.6",
       "scope": "optional"
     },
     {
       "type": "library",
       "name": "cachetools",
-      "version": "6.2.0",
-      "purl": "pkg:pypi/cachetools@6.2.0",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "catalogue",
-      "version": "2.0.10",
-      "purl": "pkg:pypi/catalogue@2.0.10",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "catboost",
-      "version": "1.2.8",
-      "purl": "pkg:pypi/catboost@1.2.8",
+      "version": "6.2.2",
+      "purl": "pkg:pypi/cachetools@6.2.2",
       "scope": "optional"
     },
     {
       "type": "library",
       "name": "certifi",
-      "version": "2025.8.3",
-      "purl": "pkg:pypi/certifi@2025.8.3",
+      "version": "2025.11.12",
+      "purl": "pkg:pypi/certifi@2025.11.12",
       "scope": "optional"
     },
     {
@@ -301,37 +147,30 @@
     },
     {
       "type": "library",
-      "name": "charset-normalizer",
-      "version": "3.4.3",
-      "purl": "pkg:pypi/charset-normalizer@3.4.3",
+      "name": "chardet",
+      "version": "5.2.0",
+      "purl": "pkg:pypi/chardet@5.2.0",
       "scope": "optional"
     },
     {
       "type": "library",
-      "name": "cleo",
-      "version": "2.1.0",
-      "purl": "pkg:pypi/cleo@2.1.0",
+      "name": "charset-normalizer",
+      "version": "3.4.4",
+      "purl": "pkg:pypi/charset-normalizer@3.4.4",
       "scope": "optional"
     },
     {
       "type": "library",
       "name": "click",
-      "version": "8.2.1",
-      "purl": "pkg:pypi/click@8.2.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "cloudpathlib",
-      "version": "0.23.0",
-      "purl": "pkg:pypi/cloudpathlib@0.23.0",
+      "version": "8.3.1",
+      "purl": "pkg:pypi/click@8.3.1",
       "scope": "optional"
     },
     {
       "type": "library",
       "name": "cloudpickle",
-      "version": "3.1.1",
-      "purl": "pkg:pypi/cloudpickle@3.1.1",
+      "version": "3.1.2",
+      "purl": "pkg:pypi/cloudpickle@3.1.2",
       "scope": "optional"
     },
     {
@@ -343,30 +182,191 @@
     },
     {
       "type": "library",
-      "name": "colorful",
-      "version": "0.5.8",
-      "purl": "pkg:pypi/colorful@0.5.8",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "colorlog",
-      "version": "6.10.1",
-      "purl": "pkg:pypi/colorlog@6.10.1",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
-      "name": "confection",
-      "version": "0.1.5",
-      "purl": "pkg:pypi/confection@0.1.5",
-      "scope": "optional"
-    },
-    {
-      "type": "library",
       "name": "contourpy",
-      "version": "1.3.1",
-      "purl": "pkg:pypi/contourpy@1.3.1",
+      "version": "1.3.3",
+      "purl": "pkg:pypi/contourpy@1.3.3",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "cryptography",
+      "version": "46.0.3",
+      "purl": "pkg:pypi/cryptography@46.0.3",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "cycler",
+      "version": "0.12.1",
+      "purl": "pkg:pypi/cycler@0.12.1",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "databricks-sdk",
+      "version": "0.74.0",
+      "purl": "pkg:pypi/databricks-sdk@0.74.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "decorator",
+      "version": "5.2.1",
+      "purl": "pkg:pypi/decorator@5.2.1",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "docker",
+      "version": "7.1.0",
+      "purl": "pkg:pypi/docker@7.1.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "docopt",
+      "version": "0.6.2",
+      "purl": "pkg:pypi/docopt@0.6.2",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "dparse",
+      "version": "0.6.4",
+      "purl": "pkg:pypi/dparse@0.6.4",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "executing",
+      "version": "2.2.1",
+      "purl": "pkg:pypi/executing@2.2.1",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "fairlearn",
+      "version": "0.13.0",
+      "purl": "pkg:pypi/fairlearn@0.13.0",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "fastapi",
+      "version": "0.124.2",
+      "purl": "pkg:pypi/fastapi@0.124.2",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "filelock",
+      "version": "3.20.0",
+      "purl": "pkg:pypi/filelock@3.20.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "flask",
+      "version": "3.1.2",
+      "purl": "pkg:pypi/flask@3.1.2",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "flask-cors",
+      "version": "6.0.1",
+      "purl": "pkg:pypi/flask-cors@6.0.1",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "fonttools",
+      "version": "4.61.0",
+      "purl": "pkg:pypi/fonttools@4.61.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "giskard",
+      "version": "2.18.0",
+      "purl": "pkg:pypi/giskard@2.18.0",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "gitdb",
+      "version": "4.0.12",
+      "purl": "pkg:pypi/gitdb@4.0.12",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "gitpython",
+      "version": "3.1.45",
+      "purl": "pkg:pypi/gitpython@3.1.45",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "google-auth",
+      "version": "2.43.0",
+      "purl": "pkg:pypi/google-auth@2.43.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "graphene",
+      "version": "3.4.3",
+      "purl": "pkg:pypi/graphene@3.4.3",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "graphql-core",
+      "version": "3.2.7",
+      "purl": "pkg:pypi/graphql-core@3.2.7",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "graphql-relay",
+      "version": "3.2.0",
+      "purl": "pkg:pypi/graphql-relay@3.2.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "greenlet",
+      "version": "3.3.0",
+      "purl": "pkg:pypi/greenlet@3.3.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "griffe",
+      "version": "1.15.0",
+      "purl": "pkg:pypi/griffe@1.15.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "gunicorn",
+      "version": "23.0.0",
+      "purl": "pkg:pypi/gunicorn@23.0.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "h11",
+      "version": "0.16.0",
+      "purl": "pkg:pypi/h11@0.16.0",
+      "scope": "optional"
+    },
+    {
+      "type": "library",
+      "name": "httpcore",
+      "version": "1.0.9",
+      "purl": "pkg:pypi/httpcore@1.0.9",
       "scope": "optional"
     }
   ]
